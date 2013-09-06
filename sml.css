@@ -1,0 +1,90 @@
+/* This sets the small image as the default */
+.md,
+.lg {
+    display: none;
+}
+
+/* Set the default (mobile) container sizes and the default sprite */
+.logo {
+    background: url('./img/sprite_sm.png') no-repeat 0 0;
+    height: 50px;
+    overflow: hidden;
+    text-indent: -9999px;
+    width: 100px;
+}
+
+.photo {
+    height: 200px;
+    width: 100px;
+}
+
+/* For mobile/high-pixel-density */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5) and (max-width: 600px), only screen and (-o-min-device-pixel-ratio: 3/2) and (max-width: 600px), only screen and (min--moz-device-pixel-ratio: 1.5) and (max-width: 600px), only screen and (min-device-pixel-ratio: 1.5) and (max-width: 600px) {
+
+    .sm { display: none; }
+    .md { display: inline; }
+
+    .logo {
+        background-image: url('./img/sprite_md.png');
+        background-size: 100px; /*  This should be half the width of the sprite */
+    }
+
+}
+
+/* For desktop/tablet - image sizes doubled */
+@media screen and (min-width: 601px) {
+
+    .sm { display: none; }
+    .md { display: inline; }
+
+    .logo { /* Note: this is on a seperate line so you can just add other sprited elements */
+        background-image: url('./img/sprite_md.png');
+        background-size: 200px; /*  This should be actual the width of the sprite */
+    }
+
+    .logo {
+        height: 100px;
+        width: 200px;
+    }
+    .photo {
+        height: 400px;
+        width: 200px;
+    }
+
+}
+
+/* For desktop/tablet w. high-pixel-density */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5) and (min-width: 601px), only screen and (-o-min-device-pixel-ratio: 3/2) and (min-width: 601px), only screen and (min--moz-device-pixel-ratio: 1.5) and (min-width: 601px), only screen and (min-device-pixel-ratio: 1.5) and (min-width: 601px) {
+
+    .sm, .md { display: none; }
+    .lg { display: inline; }
+
+    .logo {
+        background-image: url('./img/sprite_lg.png');
+        background-size: 200px; /* Half the width of the sprite! */
+    }
+
+}
+
+/* Finally, a fallback for IE8 or lower. This is effectively duplicating the desktop/tablet css */
+
+.lt-ie9 .sm { display: none; }
+.lt-ie9 .md { display: inline; }
+
+.lt-ie9 .logo {
+    height: 100px;
+    width: 200px;
+}
+
+.lt-ie9 .logo { /* Note: this is on a seperate line so you can just add other sprited elements */
+    background-image: url('./img/sprite_md.png');
+    background-size: 200px; /*  This should be actual the width of the sprite */
+}
+
+.lt-ie9 .photo {
+    height: 400px;
+    width: 200px;
+}
+
+
+
