@@ -1,7 +1,7 @@
 sml-image
 =========
 
-Mobile-first, retina-friendly CSS starting point, using a Small (1x), Medium (2x), and Large (4x) image scaling system. Works with images or sprites.
+Mobile-first, retina-friendly CSS starting point for background images, using a Small (1x), Medium (2x), and Large (4x) scaling system. Works with CSS-based background images (including sprites). Example.html also includes jQuery image replacement for inline images.
 
 ## Basic Use
 
@@ -11,13 +11,15 @@ By saving the assets at full size (img_lg), 50% (img_md), and 25% (img_sm), and 
 
 The way it works: the small image is served by default (for mobile), the medium for desktop AND mobile retina, the large for desktop retina.
 
+If you only want to serve background images, you only need the sml.css. If you want to conditionally load inline images, you should also use the appropriate code from example.html
+
 ## Example page
 
 http://komejo.com/sml-image/example.html
 
 ## License and Credits
 
-© 2013 <a href="https://github.com/komejo">Komejo</a>. Created by <a href="http://twitter.com/KomejoDev">Joe Komenda</a>.
+© 2013 <a href="https://github.com/komejo">Komejo</a>. Created by <a href="http://twitter.com/komejo">Joe Komenda</a>.
 
 sml-image is released under the <a href="http://opensource.org/licenses/MIT">MIT license</a>.
 
