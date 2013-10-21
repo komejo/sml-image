@@ -5,6 +5,12 @@
 <head>
     <meta charset="utf-8" />
     <title>sml-image example</title>
+    <script type="text/javascript">
+        // This is to detect width (respecting orientation) and retina devices.
+        // Not needed if you're just using sml-image for background images.
+        function svpMobileWidth(){window.svpObjectWidth;var a=screen.width,b=screen.height,c=document.documentElement.clientWidth,d=document.documentElement.clientHeight,e='ontouchstart' in document.documentElement;if(a<=c){c=a};if(b<=d){d=b};if(!e){svpObjectWidth=c;}else{if(window.orientation===0){svpObjectWidth=a;}else{svpObjectWidth=b;};};};svpMobileWidth();window.retina=window.devicePixelRatio > 1;
+    </script>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="sml.css">
 </head>
@@ -16,13 +22,39 @@
 
     <div class="content">
         <div class="image-container">
+            <!--
+                Note that the md/lg images use data-attr-img instead of src.
+                If you want to avoid a flash of the low-res image just replace the md/lg src with a small transparent .png
+             -->
             <img src="./img/photo_sm.png" alt="small example image" title="small example image" class="photo sm">
-            <img src="./img/photo_md.png" alt="medium example image" title="medium example image" class="photo md">
-            <img src="./img/photo_lg.png" alt="large example image" title="large example image" class="photo lg">
+            <img data-attr-img="./img/photo_md.png" src="./img/photo_sm.png" alt="medium example image" title="medium example image" class="photo md">
+            <img data-attr-img="./img/photo_lg.png" src="./img/photo_sm.png" alt="large example image" title="large example image" class="photo lg">
         </div>
     </div>
 
     <footer class="footer">This is a sample page to demonstrate sml-image. The mobile breakpoint is at 600px.</footer>
 
+    <!--  -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            // This would be used if you want to conditionally load inline images.
+            // Not needed if you're just using sml-image for background images.
+
+            // If md desktop or sm retina
+            if ((svpObjectWidth > 600 && !retina) || (svpObjectWidth < 600 && retina)) {
+                $('.md').attr('src', function() {
+                    return $(this).attr('data-attr-img');
+                });
+            // if md retina
+            } else if (retina) {
+                $('.lg').attr('src', function() {
+                    return $(this).attr('data-attr-img');
+                });
+            };
+
+         });
+    </script>
 </body>
 </html>
